@@ -1,3 +1,4 @@
+import React from 'react'
 import Expenses from './components/Expenses'
 
 function App() {
@@ -22,6 +23,12 @@ function App() {
       date: new Date(2023, 5, 12),
     },
   ]
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   React.createElement('h2', {}, 'Hello React!'),
+  //   React.createElement(Expenses, { items: expenses })
+  // )
   return (
     <div>
       <h2>Hello React</h2>
