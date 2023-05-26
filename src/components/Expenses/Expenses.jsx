@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import ExpenseItem from './ExpenseItem'
 import Card from '../UI/Card'
 import './Expenses.css'
@@ -27,6 +28,10 @@ const Expenses = (props) => {
       ></ExpenseItem>
     </Card>
   )
+}
+
+Expenses.propTypes = {
+  items: PropTypes.array,
 }
 
 export default Expenses

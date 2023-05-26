@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types'
 import './ExpenseDate.css'
 
-const ExpenseItem = (props) => {
+const ExpenseDate = (props) => {
   const month = props.date.toLocaleString('en-US', { month: 'long' })
   const day = props.date.toLocaleString('en-US', { day: '2-digit' })
   const year = props.date.getFullYear()
+  console.log(typeof year)
   return (
     <div className="expense-date">
       <div className="expense-date__month">{month}</div>
@@ -13,4 +15,8 @@ const ExpenseItem = (props) => {
   )
 }
 
-export default ExpenseItem
+ExpenseDate.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
+}
+
+export default ExpenseDate

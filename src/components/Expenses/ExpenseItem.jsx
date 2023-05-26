@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import ExpenseDate from './ExpenseDate'
 import Card from '../UI/Card'
 import './ExpenseItem.css'
@@ -12,6 +13,12 @@ const ExpenseItem = (props) => {
       </div>
     </Card>
   )
+}
+
+ExpenseItem.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
+  title: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
 }
 
 export default ExpenseItem
