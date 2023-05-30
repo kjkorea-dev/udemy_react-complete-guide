@@ -30,6 +30,7 @@ const ExpenseForm = (props) => {
     setEnteredTitle('')
     setEnteredAmount('')
     setEnteredDate('')
+    props.onCancel()
   }
 
   return (
@@ -65,6 +66,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={props.onCancel}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
@@ -73,6 +75,7 @@ const ExpenseForm = (props) => {
 
 ExpenseForm.propTypes = {
   onSaveExpenseData: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 }
 
 export default ExpenseForm
