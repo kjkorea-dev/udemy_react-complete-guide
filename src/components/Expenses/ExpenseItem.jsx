@@ -20,7 +20,7 @@ const ExpenseItem = (props) => {
 ExpenseItem.propTypes = {
   date: PropTypes.instanceOf(Date).isRequired,
   title: PropTypes.string.isRequired,
-  amount: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
 }
 
 export default ExpenseItem

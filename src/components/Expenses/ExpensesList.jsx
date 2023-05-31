@@ -22,7 +22,7 @@ const ExpensesList = (props) => {
 }
 
 ExpensesList.propTypes = {
-  items: PropTypes.arrayOf,
+  items: PropTypes.array,
 }
 
 export default ExpensesList
