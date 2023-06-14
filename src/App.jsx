@@ -1,5 +1,11 @@
+import AddUser from './components/Users/AddUser'
+
 function App() {
-  return <div>Hello, React</div>
+  return (
+    <div>
+      <AddUser />
+    </div>
+  )
 }
 
 export default App
