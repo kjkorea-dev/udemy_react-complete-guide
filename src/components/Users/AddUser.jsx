@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import Card from '../UI/Card'
 import Button from '../UI/Button'
 import classes from './AddUser.module.css'
 
-const AddUser = () => {
+const AddUser = (props) => {
   const [enteredUsernmae, setEnteredUsernmae] = useState('')
   const [enteredAge, setEnteredAge] = useState('')
 
@@ -18,7 +19,7 @@ const AddUser = () => {
       return
     }
 
-    console.log(enteredUsernmae, enteredAge)
+    props.onAddUser(enteredUsernmae, enteredAge)
     setEnteredUsernmae('')
     setEnteredAge('')
   }
@@ -51,6 +52,10 @@ const AddUser = () => {
       </form>
     </Card>
   )
+}
+
+AddUser.propTypes = {
+  onAddUser: PropTypes.func,
 }
 
 export default AddUser
