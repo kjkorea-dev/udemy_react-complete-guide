@@ -12,12 +12,20 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState()
   const [formIsValid, setFormIsValid] = useState(false)
 
-  // setFormIsValid 생략가능
+  // setFormIsValid 의존성 생략가능
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes('@') && enteredPassword.trim().length > 6
-    )
-  }, [setFormIsValid, enteredEmail, enteredPassword])
+    const identifier = setTimeout(() => {
+      console.log('Checking form validity!!!')
+      setFormIsValid(
+        enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      )
+    }, 500)
+
+    return () => {
+      console.log('CLEANUP')
+      clearTimeout(identifier)
+    }
+  }, [enteredEmail, enteredPassword])
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value)
