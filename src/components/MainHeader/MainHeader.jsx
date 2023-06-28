@@ -7,17 +7,14 @@ const MainHeader = (props) => {
   return (
     <header className={classes['main-header']}>
       <h1>A Typical Page</h1>
-      <Navigation
-        isLoggedIn={props.isAuthenticated}
-        onLogout={props.onLogout}
-      />
+      <Navigation onLogout={props.onLogout} />
     </header>
   )
 }
 
 MainHeader.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  onLogout: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+  onLogout: PropTypes.func,
 }
 
 export default MainHeader
