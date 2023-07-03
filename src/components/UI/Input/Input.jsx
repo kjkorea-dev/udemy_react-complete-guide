@@ -1,7 +1,18 @@
 import PropTypes from 'prop-types'
 import classes from './Input.module.css'
+import React, { useImperativeHandle, useRef } from 'react'
 
-const Input = (props) => {
+const Input = React.forwardRef((props, ref) => {
+  const inputRef = useRef()
+
+  useImperativeHandle(ref, () => {
+    return {
+      focus: () => {
+        inputRef.current.focus()
+      },
+    }
+  })
+
   return (
     <div
       className={`${classes.control} ${
@@ -10,6 +21,7 @@ const Input = (props) => {
     >
       <label htmlFor={props.id}>{props.label}</label>
       <input
+        ref={inputRef}
         type={props.type}
         id={props.id}
         value={props.value}
@@ -18,7 +30,9 @@ const Input = (props) => {
       />
     </div>
   )
-}
+})
+
+Input.displayName = 'Input'
 
 Input.propTypes = {
   id: PropTypes.string,
