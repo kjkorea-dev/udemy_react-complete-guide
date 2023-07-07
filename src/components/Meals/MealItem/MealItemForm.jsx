@@ -1,13 +1,15 @@
+import PropTypes from 'prop-types'
+
 import Input from '../../UI/Input'
 import classes from './MealItemForm.module.css'
 
-const MealItemForm = () => {
+const MealItemForm = (props) => {
   return (
     <form className={classes.form}>
       <Input
         label="Amount"
         input={{
-          id: 'amount',
+          id: 'amount_' + props.id,
           type: 'number',
           min: '1',
           max: '5',
@@ -18,6 +20,10 @@ const MealItemForm = () => {
       <button>+ Add</button>
     </form>
   )
+}
+
+MealItemForm.propTypes = {
+  id: PropTypes.number,
 }
 
 export default MealItemForm

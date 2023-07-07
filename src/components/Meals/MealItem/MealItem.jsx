@@ -14,13 +14,14 @@ const MealItem = (props) => {
         <div>{price}</div>
       </div>
       <div>
-        <MealItemForm />
+        <MealItemForm id={props.id} />
       </div>
     </li>
   )
 }
 
 MealItem.propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string,
   description: PropTypes.string,
   price: PropTypes.number,
