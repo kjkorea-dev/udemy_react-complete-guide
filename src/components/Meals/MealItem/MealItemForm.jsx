@@ -23,7 +23,7 @@ const MealItemForm = (props) => {
 }
 
 MealItemForm.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
 }
 
 export default MealItemForm
