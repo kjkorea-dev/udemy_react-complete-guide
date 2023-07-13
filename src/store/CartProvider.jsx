@@ -32,18 +32,17 @@ const CartProvider = (props) => {
     defaultCartState
   )
 
-  // eslint-disable-next-line no-unused-vars
   const addItemToCartHandler = (item) => {
     dispatchCartState({ type: 'ADD', payload: item })
   }
-  // eslint-disable-next-line no-unused-vars
+
   const removeItemFromCartHandler = (id) => {
     dispatchCartState({ type: 'REMOVE', payload: id })
   }
 
   const cartContext = {
-    items: [],
-    totalAmount: 0,
+    items: cartState.items,
+    totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
   }
