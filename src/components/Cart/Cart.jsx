@@ -12,10 +12,14 @@ const Cart = (props) => {
   const hasItems = cartCtx.items.length > 0
 
   // eslint-disable-next-line no-unused-vars
-  const cartItemAddHandler = (item) => {}
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({ ...item, amount: 1 })
+  }
 
   // eslint-disable-next-line no-unused-vars
-  const cartItemRemoveHandler = (id) => {}
+  const cartItemRemoveHandler = (id) => {
+    cartCtx.removeItem(id)
+  }
 
   const cartItems = cartCtx.items.map((item) => (
     <CartItem
