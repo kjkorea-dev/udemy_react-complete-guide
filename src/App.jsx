@@ -12,18 +12,32 @@ const App = () => {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await fetch('https://swapi.dev/api/films')
+      const response = await fetch(
+        'https://react-complete-guide-d8620-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json'
+      )
       if (!response.ok) {
         throw Error('Something went wrong!')
       }
 
       const data = await response.json()
-      const transformedData = data.results.map((movie) => {
+
+      const loadedMovies = []
+
+      for (const key in data) {
+        loadedMovies.push({
+          id: key,
+          title: data[key].title,
+          openningText: data[key].openningText,
+          releaseDate: data[key].releaseDate,
+        })
+      }
+
+      const transformedData = loadedMovies.map((movie) => {
         return {
-          id: movie.episode_id,
+          id: movie.id,
           title: movie.title,
-          openingText: movie.opening_crawl,
-          releaseDate: movie.release_date,
+          openingText: movie.openingText,
+          releaseDate: movie.releaseDate,
         }
       })
       setMovies(transformedData)
@@ -37,8 +51,18 @@ const App = () => {
     fetchMoviesHandler()
   }, [fetchMoviesHandler])
 
-  function addMovieHandler(movie) {
-    console.log(movie)
+  async function addMovieHandler(movie) {
+    // console.log(movie)
+    const response = await fetch(
+      'https://react-complete-guide-d8620-default-rtdb.asia-southeast1.firebasedatabase.app/movies.json',
+      {
+        method: 'POST',
+        body: JSON.stringify(movie),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
+    const data = response.json()
+    console.log(data)
   }
 
   let content = <p>Found no movies.</p>
