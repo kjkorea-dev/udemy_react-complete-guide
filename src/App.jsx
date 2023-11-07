@@ -1,5 +1,13 @@
+import BackwardCounter from './components/BackwardCounter'
+import ForwardCounter from './components/ForwardCounter'
+
 const App = () => {
-  return <div>Hello Section 16</div>
+  return (
+    <>
+      <ForwardCounter></ForwardCounter>
+      <BackwardCounter></BackwardCounter>
+    </>
+  )
 }
 
 export default App
