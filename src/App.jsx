@@ -1,39 +1,31 @@
 import { useEffect, useState } from 'react'
 import Tasks from './components/Tasks/Tasks'
 import NewTask from './components/NewTask/NewTask'
+import useHttp from './hooks/use-http'
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
   const [tasks, setTasks] = useState([])
-  const fetchTasks = async () => {
-    setIsLoading(true)
-    setError(null)
 
-    try {
-      const response = await fetch(
-        'https://react-complete-guide-d8620-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json'
-      )
+  const transformTasks = (tasksData) => {
+    const loadedTasks = []
 
-      if (!response.ok) {
-        throw new Error('Request failed!')
-      }
-
-      const data = await response.json()
-
-      const loadedTasks = []
-
-      for (const taskKey in data) {
-        loadedTasks.push({ id: taskKey, text: data[taskKey].text })
-      }
-
-      setTasks(loadedTasks)
-    } catch (error) {
-      setError(error.message || 'Something went wrong!')
+    for (const taskKey in tasksData) {
+      loadedTasks.push({ id: taskKey, text: tasksData[taskKey].text })
     }
 
-    setIsLoading(false)
+    setTasks(loadedTasks)
   }
+
+  const {
+    isLoading,
+    error,
+    sendRequest: fetchTasks,
+  } = useHttp(
+    {
+      url: 'https://react-complete-guide-d8620-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json',
+    },
+    transformTasks
+  )
 
   useEffect(() => {
     fetchTasks()
