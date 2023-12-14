@@ -6,16 +6,20 @@ const SimpleInput = () => {
   const [enteredNameIsValid, setEnteredNameIsValid] = useState(false)
   const [enteredNameTouched, setEnteredNameTouched] = useState(false)
 
+  const nameInputChangeHandler = (event) => {
+    setEnteredName(event.target.value)
+
+    if (event.target.value.trim() !== '') {
+      setEnteredNameIsValid(true)
+    }
+  }
+
   const nameInputBlurHandler = () => {
     setEnteredNameTouched(true)
 
     if (enteredName.trim() === '') {
       setEnteredNameIsValid(false)
     }
-  }
-
-  const nameInputHandler = (event) => {
-    setEnteredName(event.target.value)
   }
 
   const formSubmitHandler = (event) => {
@@ -50,7 +54,7 @@ const SimpleInput = () => {
           type="text"
           id="name"
           ref={nameInputRef}
-          onChange={nameInputHandler}
+          onChange={nameInputChangeHandler}
           value={enteredName}
           onBlur={nameInputBlurHandler}
         />
