@@ -6,6 +6,14 @@ const SimpleInput = () => {
   const [enteredNameIsValid, setEnteredNameIsValid] = useState(false)
   const [enteredNameTouched, setEnteredNameTouched] = useState(false)
 
+  const nameInputBlurHandler = () => {
+    setEnteredNameTouched(true)
+
+    if (enteredName.trim() === '') {
+      setEnteredNameIsValid(false)
+    }
+  }
+
   const nameInputHandler = (event) => {
     setEnteredName(event.target.value)
   }
@@ -44,6 +52,7 @@ const SimpleInput = () => {
           ref={nameInputRef}
           onChange={nameInputHandler}
           value={enteredName}
+          onBlur={nameInputBlurHandler}
         />
         {nameInputIsInvalid && (
           <p className="error-text">Name must not be empty.</p>
