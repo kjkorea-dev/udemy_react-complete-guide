@@ -55,7 +55,7 @@ const SimpleInput = () => {
           onChange={nameChangeHandler}
           value={enteredName}
           onBlur={nameBlurHandler}
-          autoComplete="Name"
+          autoComplete="name"
         />
         {nameInputHasError && (
           <p className="error-text">Name must not be empty.</p>
@@ -69,7 +69,7 @@ const SimpleInput = () => {
           onChange={emailChangeHandler}
           value={enteredEmail}
           onBlur={emailBlurHandler}
-          autoComplete="Email"
+          autoComplete="email"
         />
         {emailInputHasError && (
           <p className="error-text">Please enter a valid email.</p>

@@ -1,9 +1,10 @@
-import SimpleInput from './components/SimpleInput'
+// import SimpleInput from './components/SimpleInput'
+import BasicInput from './components/BasicInput'
 
 const App = () => {
   return (
     <div className="app">
-      <SimpleInput />
+      <BasicInput />
     </div>
   )
 }
