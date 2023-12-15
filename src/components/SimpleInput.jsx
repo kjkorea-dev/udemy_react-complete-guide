@@ -1,15 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const SimpleInput = () => {
   const [enteredName, setEnteredName] = useState('')
   const [enteredNameTouched, setEnteredNameTouched] = useState(false)
 
+  const [enteredEmail, setEnteredEmail] = useState('')
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false)
+
   const enteredNameIsValid = enteredName.trim() !== ''
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched
 
+  const enteredEmailIsValid =
+    enteredEmail.includes('@') && enteredEmail.includes('.')
+  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched
+
   let formIsValid = false
 
-  if (enteredNameIsValid) {
+  if (enteredNameIsValid && enteredEmailIsValid) {
     formIsValid = true
   }
 
@@ -21,21 +28,34 @@ const SimpleInput = () => {
     setEnteredNameTouched(true)
   }
 
+  const emailInputChangeHandler = (event) => {
+    setEnteredEmail(event.target.value)
+  }
+
+  const emailInputBlurHandler = () => {
+    setEnteredEmailTouched(true)
+  }
+
   const formSubmitHandler = (event) => {
     event.preventDefault()
 
-    setEnteredNameTouched(true)
-
-    if (enteredName.trim() === '') {
+    if (!enteredNameIsValid || !enteredEmailIsValid) {
       return
     }
-    console.log(enteredName)
+    console.log(enteredName, enteredEmail)
 
     setEnteredName('')
     setEnteredNameTouched(false)
+
+    setEnteredEmail('')
+    setEnteredEmailTouched(false)
   }
 
   const nameInputClasses = nameInputIsInvalid
+    ? 'form-control invalid'
+    : 'form-control'
+
+  const emailInputClasses = emailInputIsInvalid
     ? 'form-control invalid'
     : 'form-control'
 
@@ -49,9 +69,24 @@ const SimpleInput = () => {
           onChange={nameInputChangeHandler}
           value={enteredName}
           onBlur={nameInputBlurHandler}
+          autoComplete="Name"
         />
         {nameInputIsInvalid && (
           <p className="error-text">Name must not be empty.</p>
+        )}
+      </div>
+      <div className={emailInputClasses}>
+        <label htmlFor="email">Your E-Mail</label>
+        <input
+          type="email"
+          id="email"
+          onChange={emailInputChangeHandler}
+          value={enteredEmail}
+          onBlur={emailInputBlurHandler}
+          autoComplete="Email"
+        />
+        {emailInputIsInvalid && (
+          <p className="error-text">Please enter a valid email.</p>
         )}
       </div>
       <div className="form-actions">
